@@ -127,33 +127,36 @@
     // --- DEMO QUESTIONS ---
     // When you're ready, I will generate a file with 20 real questions formatted exactly like this.
     const questions = [
-        {
-            question: "In what sport would you use a 'niblick'?",
-            answers: ["Cricket", "Golf", "Polo", "Croquet"],
-            correct: 1 // Index of correct answer
-        },
-        {
-            question: "Which film won the first Academy Award for Best Picture?",
-            answers: ["Metropolis", "Sunrise", "Wings", "The Jazz Singer"],
-            correct: 2
-        },
-        {
-            question: "Who was the second President of the United States?",
-            answers: ["Thomas Jefferson", "Alexander Hamilton", "John Adams", "James Madison"],
-            correct: 2
-        },
-        {
-            question: "What is the best-selling video game console of all time?",
-            answers: ["Nintendo DS", "PlayStation 2", "Nintendo Switch", "Xbox 360"],
-            correct: 1
-        },
-        {
-            question: "In the fantasy book series 'The Lord of the Rings', what is the name of Frodo's sword?",
-            answers: ["Sting", "Glamdring", "Narsil", "Orcrist"],
-            correct: 0
-        }
+        // --- 1990s ---
+        { question: "Which 1991 Nirvana album brought grunge to the mainstream?", answers: ["Nevermind", "In Utero", "Bleach", "Ten"], correct: 0 },
+        { question: "What was the highest-grossing film of the 1990s?", answers: ["Jurassic Park", "Titanic", "Star Wars: The Phantom Menace", "The Lion King"], correct: 1 },
+        { question: "Which NFL team won three Super Bowls in four years between 1992 and 1995?", answers: ["San Francisco 49ers", "Denver Broncos", "Dallas Cowboys", "Green Bay Packers"], correct: 2 },
+        { question: "What was the name of the virtual pet phenomenon that launched in 1997?", answers: ["Furby", "Tamagotchi", "Giga Pet", "Digimon"], correct: 1 },
+        
+        // --- 2000s ---
+        { question: "Who interrupted Taylor Swift's acceptance speech at the 2009 MTV Video Music Awards?", answers: ["Eminem", "Jay-Z", "Kanye West", "Lady Gaga"], correct: 2 },
+        { question: "Which 2008 movie kicked off the Marvel Cinematic Universe?", answers: ["The Incredible Hulk", "Iron Man", "Captain America", "Thor"], correct: 1 },
+        { question: "Which MLB team broke an 86-year championship drought by winning the 2004 World Series?", answers: ["Chicago White Sox", "Chicago Cubs", "Boston Red Sox", "Cleveland Indians"], correct: 2 },
+        { question: "What was the original name of the social media platform Facebook when it launched in 2004?", answers: ["TheFacebook", "FaceMash", "MyFace", "ConnectU"], correct: 0 },
+        
+        // --- 2010s ---
+        { question: "What 2017 hit song by Luis Fonsi and Daddy Yankee became the most-streamed track of the decade?", answers: ["Shape of You", "Despacito", "Uptown Funk", "Havana"], correct: 1 },
+        { question: "What 2019 film became the first non-English language film to win the Academy Award for Best Picture?", answers: ["Roma", "Parasite", "Amour", "Crouching Tiger Hidden Dragon"], correct: 1 },
+        { question: "In 2016, which NBA team blew a 3-1 lead in the Finals to the Cleveland Cavaliers?", answers: ["San Antonio Spurs", "Golden State Warriors", "Miami Heat", "Oklahoma City Thunder"], correct: 1 },
+        { question: "What augmented reality mobile game caused a massive cultural phenomenon in the summer of 2016?", answers: ["Ingress", "Harry Potter: Wizards Unite", "Pokémon GO", "Flappy Bird"], correct: 2 },
+        
+        // --- 2020s ---
+        { question: "Which artist broke records with her 2023 'Eras Tour', becoming the highest-grossing music tour in history?", answers: ["Beyoncé", "Taylor Swift", "Adele", "Dua Lipa"], correct: 1 },
+        { question: "Which 2022 sequel became one of the highest-grossing films ever, nearly 40 years after its original?", answers: ["Avatar: The Way of Water", "Top Gun: Maverick", "Ghostbusters: Afterlife", "Matrix Resurrections"], correct: 1 },
+        { question: "Which NFL quarterback won his 7th Super Bowl ring in 2021 with the Tampa Bay Buccaneers?", answers: ["Peyton Manning", "Aaron Rodgers", "Patrick Mahomes", "Tom Brady"], correct: 3 },
+        { question: "What viral word-guessing browser game was purchased by The New York Times in early 2022?", answers: ["Connections", "Quordle", "Wordle", "Spelling Bee"], correct: 2 },
+        
+        // --- Utah vs. BYU Rivalry ---
+        { question: "What is the official nickname of the Utah vs. BYU football rivalry game?", answers: ["The Beehive Boot", "The Holy War", "The Deseret Duel", "The Salt Lake Showdown"], correct: 1 },
+        { question: "In the 2006 rivalry game, BYU won on a dramatic final play widely known as what?", answers: ["Beck to Harline", "The Miracle Bowl", "The Hail Mary", "The Fake Punt"], correct: 0 },
+        { question: "Between 2010 and 2019, which team dominated the rivalry, winning 9 consecutive matchups?", answers: ["BYU", "Utah", "They tied every game", "They didn't play each other"], correct: 1 },
+        { question: "Which head coach led the Utah Utes football team during their dominant streak over BYU in the 2010s?", answers: ["Urban Meyer", "Ron McBride", "Kyle Whittingham", "LaVell Edwards"], correct: 2 }
     ];
-
     let currentQuestionIndex = 0;
     let score = 0;
     let playerName = "";

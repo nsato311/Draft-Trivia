@@ -27,14 +27,14 @@
     
     <div id="intro-screen">
         <h1>Draft Order Trivia</h1>
-        <p>Answer 20 questions as fast as you can. You have exactly <strong>12 seconds</strong> per question.</p>
+        <p>Answer 20 questions as fast as you can. You have exactly <strong>20 seconds</strong> per question.</p>
         <p style="color: red; font-weight: bold;">WARNING: Do not refresh this page. You only get one attempt.</p>
         <input type="text" id="playerName" placeholder="Enter your name" required>
         <button onclick="startTrivia()">Start Trivia</button>
     </div>
 
     <div id="quiz-screen" class="hidden">
-        <div id="timer">12</div>
+        <div id="timer">20</div>
         <h2 id="question-text">Question goes here</h2>
         <div id="answers-container"></div>
     </div>
@@ -96,40 +96,40 @@
 
     const questions = [
         // --- 1990s ---
-        { question: "What was the name of the secret bonus track hidden at the end of Nirvana's 1991 album 'Nevermind'?", answers: ["Endless, Nameless", "You Know You're Right", "Sliver", "Aneurysm"], correct: 0 },
-        { question: "In the 1999 film 'The Matrix', what specific philosophical book does Neo use to hide his illegal software disks?", answers: ["Being and Nothingness", "Simulacra and Simulation", "The Republic", "Critique of Pure Reason"], correct: 1 },
-        { question: "Which MLB team won the 1997 World Series, becoming the first wild card team ever to win the championship?", answers: ["Cleveland Indians", "Atlanta Braves", "Florida Marlins", "New York Yankees"], correct: 2 },
-        { question: "Released in 1993, what was the first widely used graphical World Wide Web browser?", answers: ["Netscape Navigator", "Internet Explorer", "Mosaic", "Opera"], correct: 2 },
+        { question: "On Radiohead's 1997 album 'OK Computer', what is the title of the track that features a computer-generated voice reading cynical life advice?", answers: ["Subterranean Homesick Alien", "Fitter Happier", "Paranoid Android", "Karma Police"], correct: 1 },
+        { question: "In Quentin Tarantino's 1994 film 'Pulp Fiction', what is the name of the diner that Pumpkin and Honey Bunny attempt to rob?", answers: ["Big Kahuna", "Jack Rabbit Slim's", "Hawthorne Grill", "Cadillac Cafe"], correct: 2 },
+        { question: "Which NFL wide receiver became the first player in league history to record 100+ receptions and 1,800+ receiving yards in a single season, doing so in 1995?", answers: ["Herman Moore", "Cris Carter", "Michael Irvin", "Jerry Rice"], correct: 3 },
+        { question: "In 1996, Nintendo debuted the Nintendo 64 in North America with only two launch titles: 'Super Mario 64' and which other game?", answers: ["Wave Race 64", "GoldenEye 007", "Pilotwings 64", "Mario Kart 64"], correct: 2 },
         
         // --- 2000s ---
-        { question: "Which rock band's 2007 album 'In Rainbows' famously allowed fans to pay whatever price they wanted for the digital download?", answers: ["Coldplay", "Radiohead", "Foo Fighters", "The Killers"], correct: 1 },
-        { question: "What is the name of the sword Aragorn wields after it is reforged from the shards of Narsil in 'The Return of the King'?", answers: ["Glamdring", "Orcrist", "Sting", "Andúril"], correct: 3 },
-        { question: "Who won the 2004 NFL MVP award after throwing for 49 touchdowns, breaking Dan Marino's long-standing single-season record?", answers: ["Tom Brady", "Brett Favre", "Peyton Manning", "Kurt Warner"], correct: 2 },
-        { question: "Before the iPhone, the 'BlackBerry Pearl' was released in 2006 featuring what unique physical navigation tool?", answers: ["A trackball", "A scroll wheel", "A directional pad", "A stylus"], correct: 0 },
+        { question: "The Postal Service released their sole, iconic studio album 'Give Up' in 2003 on which famous Seattle independent record label?", answers: ["Matador", "Kill Rock Stars", "Merge Records", "Sub Pop"], correct: 3 },
+        { question: "In the Coen brothers' 2007 thriller 'No Country for Old Men', what unusual tool does hitman Anton Chigurh primarily use to breach door locks and eliminate victims?", answers: ["Captive bolt pistol", "Silenced nail gun", "Compressed air chisel", "High-tensile pry bar"], correct: 0 },
+        { question: "In the 2001 World Series Game 7, which Arizona Diamondbacks player hit the walk-off single off Mariano Rivera to defeat the Yankees?", answers: ["Mark Grace", "Matt Williams", "Luis Gonzalez", "Jay Bell"], correct: 2 },
+        { question: "In 2005, the very first video uploaded to YouTube was titled 'Me at the zoo' and showed co-founder Jawed Karim standing in front of elephants at which zoo?", answers: ["San Diego Zoo", "Bronx Zoo", "Central Park Zoo", "Los Angeles Zoo"], correct: 0 },
         
         // --- 2010s ---
-        { question: "Which rapper won the Pulitzer Prize for Music in 2018 for the critically acclaimed album 'DAMN.'?", answers: ["J. Cole", "Kendrick Lamar", "Drake", "Childish Gambino"], correct: 1 },
-        { question: "In Christopher Nolan's 'Inception' (2010), what Edith Piaf song is used as the musical cue to wake the characters?", answers: ["La Vie en rose", "Milord", "Non, je ne regrette rien", "Sous le ciel de Paris"], correct: 2 },
-        { question: "Which NHL franchise achieved modern dynasty status by winning three Stanley Cups between 2010 and 2015?", answers: ["Los Angeles Kings", "Pittsburgh Penguins", "Chicago Blackhawks", "Boston Bruins"], correct: 2 },
-        { question: "What was the name of the viral mobile app released in 2014 that exclusively allowed users to send one specific two-letter word to their contacts?", answers: ["Hi", "Yo", "Sup", "Hey"], correct: 1 },
+        { question: "At the 2012 Grammy Awards, which indie-folk artist famously won Best New Artist, beating out Skrillex, Nicki Minaj, and J. Cole?", answers: ["The Lumineers", "Bon Iver", "Mumford & Sons", "Fleet Foxes"], correct: 1 },
+        { question: "In the 2014 sci-fi film 'Interstellar', what is the name of the ocean planet where one hour on the surface equals seven years back on Earth?", answers: ["Mann's planet", "Edmunds' planet", "Miller's planet", "Gargantua Prime"], correct: 2 },
+        { question: "Which pitcher threw the only perfect game in Seattle Mariners franchise history on August 15, 2012?", answers: ["Randy Johnson", "Hisashi Iwakuma", "James Paxton", "Felix Hernandez"], correct: 3 },
+        { question: "In 2012, which Austrian daredevil broke the sound barrier in freefall by jumping from the stratosphere at 128,100 feet in the Red Bull Stratos project?", answers: ["Felix Baumgartner", "Luke Aikins", "Yves Rossy", "Joe Kittinger"], correct: 0 },
         
         // --- 2020s ---
-        { question: "Which artist's 2021 debut album 'Sour' broke the Spotify record for the biggest opening week by a female artist?", answers: ["Billie Eilish", "Dua Lipa", "Olivia Rodrigo", "Megan Thee Stallion"], correct: 2 },
-        { question: "In the 2022 film 'Everything Everywhere All at Once', what specific object sits at the center of Jobu Tupaki's multiverse?", answers: ["A googly eye", "An Everything Bagel", "A receipt", "A fanny pack"], correct: 1 },
-        { question: "Which MLB team won the 2023 World Series, claiming their first championship in franchise history?", answers: ["Arizona Diamondbacks", "Texas Rangers", "San Diego Padres", "Houston Astros"], correct: 1 },
-        { question: "Which specific non-fungible token (NFT) collection featuring primate avatars reached a floor price of over $400,000 in early 2022?", answers: ["CryptoPunks", "Pudgy Penguins", "Bored Ape Yacht Club", "Mutant Apes"], correct: 2 },
+        { question: "In 2021, which English rock band topped the charts with their viral hit 'Heat Waves', which took a record-breaking 59 weeks to reach #1 on the Billboard Hot 100?", answers: ["Arctic Monkeys", "Glass Animals", "Foals", "Bastille"], correct: 1 },
+        { question: "In Denis Villeneuve's 2021 sci-fi epic 'Dune', which actor portrays the villainous Baron Vladimir Harkonnen under extensive prosthetic makeup?", answers: ["Dave Bautista", "Stellan Skarsgård", "Javier Bardem", "David Dastmalchian"], correct: 1 },
+        { question: "In the 2021-22 NBA season, which defensive anchor for the Boston Celtics became the first guard to win NBA Defensive Player of the Year since Gary Payton in 1996?", answers: ["Jrue Holiday", "Marcus Smart", "Mikal Bridges", "Derrick White"], correct: 1 },
+        { question: "In 2021, a massive container ship named 'Ever Given' famously ran aground and blocked global maritime trade for six days in which vital waterway?", answers: ["Panama Canal", "Corinth Canal", "Kiel Canal", "Suez Canal"], correct: 3 },
         
         // --- Utah vs. BYU Rivalry ---
-        { question: "In the 2015 Las Vegas Bowl rivalry matchup, the Utah defense forced an incredible how many turnovers against BYU in the first quarter alone?", answers: ["3", "4", "5", "6"], correct: 2 },
-        { question: "Who caught the game-winning touchdown pass from John Beck on the final play of the dramatic 2006 rivalry game for BYU?", answers: ["Jonny Harline", "Dennis Pitta", "Austin Collie", "Curtis Brown"], correct: 0 },
-        { question: "Which Utah Utes quarterback started and won three consecutive rivalry games against BYU from 2012 to 2015?", answers: ["Tyler Huntley", "Travis Wilson", "Jordan Wynn", "Brian Johnson"], correct: 1 },
-        { question: "In 2021, BYU finally snapped Utah's 9-game winning streak. Who was the starting quarterback for BYU in that 26-17 victory?", answers: ["Zach Wilson", "Taysom Hill", "Jaren Hall", "Tanner Mangum"], correct: 2 }
+        { question: "In the chaotic final seconds of the 2012 rivalry game, which BYU kicker hit the left upright on a 36-yard field goal attempt to end the game after Utah fans rushed the field prematurely?", answers: ["Justin Sorensen", "Mitch Payne", "Riley Stephenson", "Matt Payne"], correct: 2 },
+        { question: "In 1998, which Utah kicker lined up for a potential game-winning 32-yard field goal in the final seconds only to watch it famously bounce off the right upright, preserving a BYU win?", answers: ["Andy Phillips", "Ryan Kaneshiro", "Chris Yergensen", "Matt Gay"], correct: 1 },
+        { question: "In the dramatic 2024 rivalry game, BYU's Will Ferrin kicked a game-winning field goal, but the drive was kept alive by what controversial penalty against Utah on 4th-and-10?", answers: ["Defensive holding", "Pass interference", "Offsides", "Roughing the passer"], correct: 0 },
+        { question: "In the 2015 Las Vegas Bowl rivalry matchup, Utah built a massive 35-0 lead by forcing how many BYU turnovers in the first quarter alone?", answers: ["3", "4", "5", "6"], correct: 2 }
     ];
 
     let currentQuestionIndex = 0;
     let score = 0;
     let playerName = "";
-    let timeLeft = 12;
+    let timeLeft = 20;
     let timerInterval;
     let startTime;
 
@@ -173,7 +173,7 @@
     }
 
     function startTimer() {
-        timeLeft = 12;
+        timeLeft = 20;
         document.getElementById("timer").innerText = timeLeft;
         clearInterval(timerInterval);
         timerInterval = setInterval(() => {

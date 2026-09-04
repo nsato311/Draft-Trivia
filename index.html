@@ -5,70 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fantasy Football Draft Trivia</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; width: 100%; text-align: center; }
         .hidden { display: none; }
         h1 { margin-top: 0; color: #2c3e50; }
-        input[type="text"], input[type="number"] {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .tiebreaker-group {
-            margin-bottom: 20px;
-            text-align: left;
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 5px;
-        }
+        input[type="text"], input[type="number"] { width: 80%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        .tiebreaker-group { margin-bottom: 20px; text-align: left; background: #f9f9f9; padding: 10px; border-radius: 5px; }
         .tiebreaker-group input { width: 60px; display: inline-block; }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
+        button { background-color: #3498db; color: white; border: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; transition: background 0.3s; }
         button:hover { background-color: #2980b9; }
-        .answer-btn {
-            background-color: #ecf0f1;
-            color: #333;
-            margin: 5px 0;
-        }
+        .answer-btn { background-color: #ecf0f1; color: #333; margin: 5px 0; }
         .answer-btn:hover { background-color: #d5dbdb; }
-        #timer {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e74c3c;
-            margin-bottom: 15px;
-        }
-        .warning { color: red; font-weight: bold; }
+        #timer { font-size: 24px; font-weight: bold; color: #e74c3c; margin-bottom: 15px; }
         .score-card { text-align: left; background: #e8f8f5; padding: 20px; border-radius: 8px; border: 2px dashed #1abc9c;}
+        .lockout { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 20px; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -77,7 +27,8 @@
     
     <div id="intro-screen">
         <h1>Draft Order Trivia</h1>
-        <p>Answer 20 questions as fast as you can. You have exactly <strong>12 seconds</strong> per question. No Googling!</p>
+        <p>Answer 20 questions as fast as you can. You have exactly <strong>12 seconds</strong> per question.</p>
+        <p style="color: red; font-weight: bold;">WARNING: Do not refresh this page. You only get one attempt.</p>
         <input type="text" id="playerName" placeholder="Enter your name" required>
         <button onclick="startTrivia()">Start Trivia</button>
     </div>
@@ -85,8 +36,7 @@
     <div id="quiz-screen" class="hidden">
         <div id="timer">12</div>
         <h2 id="question-text">Question goes here</h2>
-        <div id="answers-container">
-            </div>
+        <div id="answers-container"></div>
     </div>
 
     <div id="tiebreaker-screen" class="hidden">
@@ -94,15 +44,21 @@
         <p>Guess the final scores for these college football games this weekend.</p>
         
         <div class="tiebreaker-group">
-            <strong>Utah vs. Baylor</strong><br>
-            Utah: <input type="number" id="tb1-team1" min="0"> 
-            Baylor: <input type="number" id="tb1-team2" min="0">
+            <strong>Utah Tech vs. BYU</strong><br>
+            Utah Tech: <input type="number" id="tb1-team1" min="0"> 
+            BYU: <input type="number" id="tb1-team2" min="0">
         </div>
         
         <div class="tiebreaker-group">
-            <strong>Texas vs. Michigan</strong><br>
-            Texas: <input type="number" id="tb2-team1" min="0"> 
-            Michigan: <input type="number" id="tb2-team2" min="0">
+            <strong>Boise State vs. Oregon</strong><br>
+            Boise St: <input type="number" id="tb2-team1" min="0"> 
+            Oregon: <input type="number" id="tb2-team2" min="0">
+        </div>
+
+        <div class="tiebreaker-group">
+            <strong>Clemson vs. LSU</strong><br>
+            Clemson: <input type="number" id="tb3-team1" min="0"> 
+            LSU: <input type="number" id="tb3-team2" min="0">
         </div>
 
         <button onclick="submitTiebreaker()">Submit Final Answers</button>
@@ -114,54 +70,68 @@
         <div class="score-card">
             <h3>Manager: <span id="final-name"></span></h3>
             <h3>Trivia Score: <span id="final-score"></span> / <span id="total-questions"></span></h3>
+            <p><strong>Total Time:</strong> <span id="elapsed-time"></span> seconds</p>
             <hr>
             <h4>Tiebreaker Guesses:</h4>
-            <p>Utah <span id="res-tb1-t1"></span> - Baylor <span id="res-tb1-t2"></span></p>
-            <p>Texas <span id="res-tb2-t1"></span> - Michigan <span id="res-tb2-t2"></span></p>
+            <p>Utah Tech <span id="res-tb1-t1"></span> - BYU <span id="res-tb1-t2"></span></p>
+            <p>Boise St <span id="res-tb2-t1"></span> - Oregon <span id="res-tb2-t2"></span></p>
+            <p>Clemson <span id="res-tb3-t1"></span> - LSU <span id="res-tb3-t2"></span></p>
         </div>
+    </div>
+
+    <div id="lockout-screen" class="hidden lockout">
+        <h2>Attempt Recorded</h2>
+        <p>Our system shows you have already started or completed this trivia attempt on this device.</p>
     </div>
 
 </div>
 
 <script>
-    // --- DEMO QUESTIONS ---
-    // When you're ready, I will generate a file with 20 real questions formatted exactly like this.
+    window.onload = function() {
+        if (localStorage.getItem("triviaAttempted") === "true") {
+            document.getElementById("intro-screen").classList.add("hidden");
+            document.getElementById("lockout-screen").classList.remove("hidden");
+        }
+    };
+
     const questions = [
         // --- 1990s ---
-        { question: "Which 1991 Nirvana album brought grunge to the mainstream?", answers: ["Nevermind", "In Utero", "Bleach", "Ten"], correct: 0 },
-        { question: "What was the highest-grossing film of the 1990s?", answers: ["Jurassic Park", "Titanic", "Star Wars: The Phantom Menace", "The Lion King"], correct: 1 },
-        { question: "Which NFL team won three Super Bowls in four years between 1992 and 1995?", answers: ["San Francisco 49ers", "Denver Broncos", "Dallas Cowboys", "Green Bay Packers"], correct: 2 },
-        { question: "What was the name of the virtual pet phenomenon that launched in 1997?", answers: ["Furby", "Tamagotchi", "Giga Pet", "Digimon"], correct: 1 },
+        { question: "What was the name of the secret bonus track hidden at the end of Nirvana's 1991 album 'Nevermind'?", answers: ["Endless, Nameless", "You Know You're Right", "Sliver", "Aneurysm"], correct: 0 },
+        { question: "In the 1999 film 'The Matrix', what specific philosophical book does Neo use to hide his illegal software disks?", answers: ["Being and Nothingness", "Simulacra and Simulation", "The Republic", "Critique of Pure Reason"], correct: 1 },
+        { question: "Which MLB team won the 1997 World Series, becoming the first wild card team ever to win the championship?", answers: ["Cleveland Indians", "Atlanta Braves", "Florida Marlins", "New York Yankees"], correct: 2 },
+        { question: "Released in 1993, what was the first widely used graphical World Wide Web browser?", answers: ["Netscape Navigator", "Internet Explorer", "Mosaic", "Opera"], correct: 2 },
         
         // --- 2000s ---
-        { question: "Who interrupted Taylor Swift's acceptance speech at the 2009 MTV Video Music Awards?", answers: ["Eminem", "Jay-Z", "Kanye West", "Lady Gaga"], correct: 2 },
-        { question: "Which 2008 movie kicked off the Marvel Cinematic Universe?", answers: ["The Incredible Hulk", "Iron Man", "Captain America", "Thor"], correct: 1 },
-        { question: "Which MLB team broke an 86-year championship drought by winning the 2004 World Series?", answers: ["Chicago White Sox", "Chicago Cubs", "Boston Red Sox", "Cleveland Indians"], correct: 2 },
-        { question: "What was the original name of the social media platform Facebook when it launched in 2004?", answers: ["TheFacebook", "FaceMash", "MyFace", "ConnectU"], correct: 0 },
+        { question: "Which rock band's 2007 album 'In Rainbows' famously allowed fans to pay whatever price they wanted for the digital download?", answers: ["Coldplay", "Radiohead", "Foo Fighters", "The Killers"], correct: 1 },
+        { question: "What is the name of the sword Aragorn wields after it is reforged from the shards of Narsil in 'The Return of the King'?", answers: ["Glamdring", "Orcrist", "Sting", "Andúril"], correct: 3 },
+        { question: "Who won the 2004 NFL MVP award after throwing for 49 touchdowns, breaking Dan Marino's long-standing single-season record?", answers: ["Tom Brady", "Brett Favre", "Peyton Manning", "Kurt Warner"], correct: 2 },
+        { question: "Before the iPhone, the 'BlackBerry Pearl' was released in 2006 featuring what unique physical navigation tool?", answers: ["A trackball", "A scroll wheel", "A directional pad", "A stylus"], correct: 0 },
         
         // --- 2010s ---
-        { question: "What 2017 hit song by Luis Fonsi and Daddy Yankee became the most-streamed track of the decade?", answers: ["Shape of You", "Despacito", "Uptown Funk", "Havana"], correct: 1 },
-        { question: "What 2019 film became the first non-English language film to win the Academy Award for Best Picture?", answers: ["Roma", "Parasite", "Amour", "Crouching Tiger Hidden Dragon"], correct: 1 },
-        { question: "In 2016, which NBA team blew a 3-1 lead in the Finals to the Cleveland Cavaliers?", answers: ["San Antonio Spurs", "Golden State Warriors", "Miami Heat", "Oklahoma City Thunder"], correct: 1 },
-        { question: "What augmented reality mobile game caused a massive cultural phenomenon in the summer of 2016?", answers: ["Ingress", "Harry Potter: Wizards Unite", "Pokémon GO", "Flappy Bird"], correct: 2 },
+        { question: "Which rapper won the Pulitzer Prize for Music in 2018 for the critically acclaimed album 'DAMN.'?", answers: ["J. Cole", "Kendrick Lamar", "Drake", "Childish Gambino"], correct: 1 },
+        { question: "In Christopher Nolan's 'Inception' (2010), what Edith Piaf song is used as the musical cue to wake the characters?", answers: ["La Vie en rose", "Milord", "Non, je ne regrette rien", "Sous le ciel de Paris"], correct: 2 },
+        { question: "Which NHL franchise achieved modern dynasty status by winning three Stanley Cups between 2010 and 2015?", answers: ["Los Angeles Kings", "Pittsburgh Penguins", "Chicago Blackhawks", "Boston Bruins"], correct: 2 },
+        { question: "What was the name of the viral mobile app released in 2014 that exclusively allowed users to send one specific two-letter word to their contacts?", answers: ["Hi", "Yo", "Sup", "Hey"], correct: 1 },
         
         // --- 2020s ---
-        { question: "Which artist broke records with her 2023 'Eras Tour', becoming the highest-grossing music tour in history?", answers: ["Beyoncé", "Taylor Swift", "Adele", "Dua Lipa"], correct: 1 },
-        { question: "Which 2022 sequel became one of the highest-grossing films ever, nearly 40 years after its original?", answers: ["Avatar: The Way of Water", "Top Gun: Maverick", "Ghostbusters: Afterlife", "Matrix Resurrections"], correct: 1 },
-        { question: "Which NFL quarterback won his 7th Super Bowl ring in 2021 with the Tampa Bay Buccaneers?", answers: ["Peyton Manning", "Aaron Rodgers", "Patrick Mahomes", "Tom Brady"], correct: 3 },
-        { question: "What viral word-guessing browser game was purchased by The New York Times in early 2022?", answers: ["Connections", "Quordle", "Wordle", "Spelling Bee"], correct: 2 },
+        { question: "Which artist's 2021 debut album 'Sour' broke the Spotify record for the biggest opening week by a female artist?", answers: ["Billie Eilish", "Dua Lipa", "Olivia Rodrigo", "Megan Thee Stallion"], correct: 2 },
+        { question: "In the 2022 film 'Everything Everywhere All at Once', what specific object sits at the center of Jobu Tupaki's multiverse?", answers: ["A googly eye", "An Everything Bagel", "A receipt", "A fanny pack"], correct: 1 },
+        { question: "Which MLB team won the 2023 World Series, claiming their first championship in franchise history?", answers: ["Arizona Diamondbacks", "Texas Rangers", "San Diego Padres", "Houston Astros"], correct: 1 },
+        { question: "Which specific non-fungible token (NFT) collection featuring primate avatars reached a floor price of over $400,000 in early 2022?", answers: ["CryptoPunks", "Pudgy Penguins", "Bored Ape Yacht Club", "Mutant Apes"], correct: 2 },
         
         // --- Utah vs. BYU Rivalry ---
-        { question: "What is the official nickname of the Utah vs. BYU football rivalry game?", answers: ["The Beehive Boot", "The Holy War", "The Deseret Duel", "The Salt Lake Showdown"], correct: 1 },
-        { question: "In the 2006 rivalry game, BYU won on a dramatic final play widely known as what?", answers: ["Beck to Harline", "The Miracle Bowl", "The Hail Mary", "The Fake Punt"], correct: 0 },
-        { question: "Between 2010 and 2019, which team dominated the rivalry, winning 9 consecutive matchups?", answers: ["BYU", "Utah", "They tied every game", "They didn't play each other"], correct: 1 },
-        { question: "Which head coach led the Utah Utes football team during their dominant streak over BYU in the 2010s?", answers: ["Urban Meyer", "Ron McBride", "Kyle Whittingham", "LaVell Edwards"], correct: 2 }
+        { question: "In the 2015 Las Vegas Bowl rivalry matchup, the Utah defense forced an incredible how many turnovers against BYU in the first quarter alone?", answers: ["3", "4", "5", "6"], correct: 2 },
+        { question: "Who caught the game-winning touchdown pass from John Beck on the final play of the dramatic 2006 rivalry game for BYU?", answers: ["Jonny Harline", "Dennis Pitta", "Austin Collie", "Curtis Brown"], correct: 0 },
+        { question: "Which Utah Utes quarterback started and won three consecutive rivalry games against BYU from 2012 to 2015?", answers: ["Tyler Huntley", "Travis Wilson", "Jordan Wynn", "Brian Johnson"], correct: 1 },
+        { question: "In 2021, BYU finally snapped Utah's 9-game winning streak. Who was the starting quarterback for BYU in that 26-17 victory?", answers: ["Zach Wilson", "Taysom Hill", "Jaren Hall", "Tanner Mangum"], correct: 2 }
     ];
+
     let currentQuestionIndex = 0;
     let score = 0;
     let playerName = "";
     let timeLeft = 12;
     let timerInterval;
+    let startTime;
 
     function startTrivia() {
         const nameInput = document.getElementById("playerName").value.trim();
@@ -169,7 +139,11 @@
             alert("Please enter your name!");
             return;
         }
+        
+        localStorage.setItem("triviaAttempted", "true");
         playerName = nameInput;
+        startTime = Date.now(); 
+        
         document.getElementById("intro-screen").classList.add("hidden");
         document.getElementById("quiz-screen").classList.remove("hidden");
         loadQuestion();
@@ -185,7 +159,7 @@
         document.getElementById("question-text").innerText = q.question;
         
         const ansContainer = document.getElementById("answers-container");
-        ansContainer.innerHTML = ""; // clear old buttons
+        ansContainer.innerHTML = ""; 
 
         q.answers.forEach((ans, index) => {
             const btn = document.createElement("button");
@@ -207,7 +181,6 @@
             document.getElementById("timer").innerText = timeLeft;
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                // Time's up - treat as wrong answer and move on
                 currentQuestionIndex++;
                 loadQuestion();
             }
@@ -217,11 +190,7 @@
     function selectAnswer(selectedIndex) {
         clearInterval(timerInterval);
         const correctIndex = questions[currentQuestionIndex].correct;
-        
-        if (selectedIndex === correctIndex) {
-            score++;
-        }
-        
+        if (selectedIndex === correctIndex) score++;
         currentQuestionIndex++;
         loadQuestion();
     }
@@ -232,23 +201,28 @@
     }
 
     function submitTiebreaker() {
-        // Collect tiebreaker data
-        const utah = document.getElementById("tb1-team1").value || "0";
-        const baylor = document.getElementById("tb1-team2").value || "0";
-        const texas = document.getElementById("tb2-team1").value || "0";
-        const michigan = document.getElementById("tb2-team2").value || "0";
+        const endTime = Date.now();
+        const elapsedSeconds = Math.floor((endTime - startTime) / 1000);
 
-        // Populate results screen
+        const ut = document.getElementById("tb1-team1").value || "0";
+        const byu = document.getElementById("tb1-team2").value || "0";
+        const boise = document.getElementById("tb2-team1").value || "0";
+        const oregon = document.getElementById("tb2-team2").value || "0";
+        const clemson = document.getElementById("tb3-team1").value || "0";
+        const lsu = document.getElementById("tb3-team2").value || "0";
+
         document.getElementById("final-name").innerText = playerName;
         document.getElementById("final-score").innerText = score;
         document.getElementById("total-questions").innerText = questions.length;
+        document.getElementById("elapsed-time").innerText = elapsedSeconds;
         
-        document.getElementById("res-tb1-t1").innerText = utah;
-        document.getElementById("res-tb1-t2").innerText = baylor;
-        document.getElementById("res-tb2-t1").innerText = texas;
-        document.getElementById("res-tb2-t2").innerText = michigan;
+        document.getElementById("res-tb1-t1").innerText = ut;
+        document.getElementById("res-tb1-t2").innerText = byu;
+        document.getElementById("res-tb2-t1").innerText = boise;
+        document.getElementById("res-tb2-t2").innerText = oregon;
+        document.getElementById("res-tb3-t1").innerText = clemson;
+        document.getElementById("res-tb3-t2").innerText = lsu;
 
-        // Switch screens
         document.getElementById("tiebreaker-screen").classList.add("hidden");
         document.getElementById("results-screen").classList.remove("hidden");
     }
